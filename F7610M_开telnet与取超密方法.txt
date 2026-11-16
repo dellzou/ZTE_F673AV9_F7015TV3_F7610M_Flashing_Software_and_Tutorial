@@ -1,0 +1,45 @@
+中兴zxhn f7610m光猫开临时及永久telnet，切换地区，删除SSID前缀，获取超密方法 
+ 
+第一步 用mayi5147的工具尝试获取临时telnet用户名及密码：
+https://www.chinadsl.net/forum.php?mod=viewthread&tid=174878&page=1#pid1042055
+选择第一项目全自动，如果不能正确获取，又不想捅屁股恢复原厂的话，就放弃吧。
+
+恢复出厂，捅屁股后还不放心的话，再网页来一次：通过http://192.168.1.1/return2factory.html 恢复出厂设置。
+恢复出厂后的默认超级用户及密码：管理员用户名：CMCCAdmin，口令：aDm8H%MdA
+ 
+第二步 用临时telnel用户名及密码，开户永久telnet：
+工具在：https://www.chinadsl.net/forum.php?mod=viewthread&tid=174970
+
+第三步 开永久telnet后，用默认用户及密码登录：用户名：root，密码为光猫系列号。
+
+第四步 改地区，登录光猫后，输入：cat /etc/init.d/regioncode，找到自己区域的代码，然后更改：upgradetest sdefconf 区域代码，光猫自动重启完成区域设置。
+
+第五步 再次登录光猫，上传配置文件至电脑。
+打开tftpd，登录光猫，输入：tftp -p -l userconfig/cfg/db_user_cfg.xml -r db_user_cfg.xml 192.168.1.2，然后在电脑上开个终端，解密配置文件：
+ztecfg.exe -d AESCBC -i db_user_cfg.xml -o user.cfg
+
+第六步 记事本打开解密后的user.cfg，查找自己需要的信息：
+DevAuthInfo字段里面的为超级用户及密码
+TelnetCfg为telnet的相关配置
+
+第七步 其他的一些操作
+删除SSID前缀，修改user用户权限为管理员
+输入如下命令：
+sendcmd 1 DB set DevAuthInfo 1 Level 1（user用户提权为管理员）
+sendcmd 1 DB set WLANCfg 0 ESSIDPrefix ""（设置2.4G的ssid前缀为空）
+sendcmd 1 DB set WLANCfg 4 ESSIDPrefix ""（设置5G的ssid前缀为空）
+sendcmd 1 DB save （手工保存配置文件）
+重新启动光猫后，user用户登录后可看到并修改全部菜单，并且ssid可以随便修改了，没有了缺省的前缀”CMCC-“
+
+打开任意网页自动跳转LOID注册页面—
+sendcmd 1 DB set PDTCTUSERINFO 0 Status 0
+sendcmd 1 DB set PDTCTUSERINFO 0 Result 1
+sendcmd 1 DB save
+ 
+更改telnet用户密码
+sendcmd 1 DB set TelnetCfg 0 TS_UPwd ooxx
+sendcmd 1 DB set TelnetCfg 0 TSLan_UPwd ooxx
+
+用到的工具
+ zxhn f7610m工具.rar 
+
