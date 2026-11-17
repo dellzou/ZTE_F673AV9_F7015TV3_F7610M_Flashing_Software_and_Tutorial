@@ -61,6 +61,15 @@ e5fa3ca8a74a768c58abe7a0e552bbd66276353804604cbaa6c2479b95b9d702  factorymode_cr
 9b4c7bb031c73e3d0f5cd44366f1c51c226caa9d87a606d5d0779bc7311dd3ee  中兴 ZXHN F673AV9教程.txt
 ```
 
+## 相关仓库
+
+同品牌其它机型，命令体系相近，排障时可以互相参照；每个仓库开头都对应一篇文章：
+
+- [中兴 F650 / F1855V2 工具包](https://github.com/dellzou/ZTE_F650_F1855V2_Flashing_Software_and_Tutorial)：中兴 F650 / F1855V2，天翼网关 4.0 开 Telnet
+- [中兴 F7607P 工具包](https://github.com/dellzou/ZTE_F7607P_Flashing_Software_and_Tutorial)：中兴 F7607P，改地区与电信版固件
+- [中兴 G7610 工具包](https://github.com/dellzou/ZTE_G7610_Flashing_Software_and_Tutorial)：中兴 G7610，工厂模式、setmac 改码、配置解密
+- [中兴 G7615 / G7611 工具包](https://github.com/dellzou/ZTE_G7615_G7611_Flashing_Software_and_Tutorial)：中兴 G7615 / G7611，改地区与分区刷写
+
 ## 免责声明
 
 工具与固件均来自公开维修资料，仅供自有设备维修与学习使用。刷机有风险，操作前先备份，后果自负。
